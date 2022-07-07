@@ -25,12 +25,14 @@ model Paciente {
   telefone    String
 
   @@map("paciente")
+  consulta    Consulta[]
 }
 
 model Consulta {
   id          String  @id @default(uuid())
-  nome        String
-  data        DateTime
+  pacienteId  String
+  paciente    Paciente  @relation(fields: [pacienteId], references: [id])
+  data        DateTime 
 
   @@map("consulta")
 }

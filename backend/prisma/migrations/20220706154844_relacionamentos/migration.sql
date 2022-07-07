@@ -20,7 +20,7 @@ CREATE TABLE "paciente" (
 -- CreateTable
 CREATE TABLE "consulta" (
     "id" TEXT NOT NULL,
-    "nome" TEXT NOT NULL,
+    "pacienteId" TEXT NOT NULL,
     "data" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "consulta_pkey" PRIMARY KEY ("id")
@@ -28,3 +28,6 @@ CREATE TABLE "consulta" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "funcionario_matricula_key" ON "funcionario"("matricula");
+
+-- AddForeignKey
+ALTER TABLE "consulta" ADD CONSTRAINT "consulta_pacienteId_fkey" FOREIGN KEY ("pacienteId") REFERENCES "paciente"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
