@@ -24,7 +24,7 @@ CREATE TABLE "consulta" (
     "cpf_paciente" TEXT NOT NULL,
     "data" TEXT NOT NULL,
 
-    CONSTRAINT "consulta_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "consulta_pkey" PRIMARY KEY ("cpf_paciente")
 );
 
 -- CreateIndex

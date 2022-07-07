@@ -4,6 +4,7 @@ import { LoginFuncionarioController } from "./useCases/funcionarioUseCase/loginF
 import { CreatePacienteController } from "./useCases/pacienteUseCase/createPaciente/CreatePacienteController";
 import { middlewareLogin } from "./middlewares/middlewareLogin";
 import { CreateConsultaController } from "./useCases/consultaUseCase/createConsulta/CreateConsultaController";
+import { AtualizaConsultaController } from "./useCases/consultaUseCase/atualizaConsulta/AtualizaConsultaController";
 
 const router = Router();
 
@@ -18,7 +19,9 @@ const createPacienteController = new CreatePacienteController();
 router.post('/auh/register/paciente', middlewareLogin, createPacienteController.handle);
 
 const createConsultaConstroller = new CreateConsultaController();
-router.post('/auth/register/consulta', middlewareLogin, createConsultaConstroller.handle)
+const atualizaConsultaController = new AtualizaConsultaController();
+router.post('/auth/register/consulta', middlewareLogin, createConsultaConstroller.handle);
+router.put('/auth/update/consulta', middlewareLogin, atualizaConsultaController.handle);
 
 
 

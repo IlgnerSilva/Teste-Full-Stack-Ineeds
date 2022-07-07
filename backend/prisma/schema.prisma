@@ -30,8 +30,8 @@ model Paciente {
 }
 
 model Consulta {
-  id          String  @id @default(uuid())
-  cpf_paciente  String
+  id          String  @default(uuid())
+  cpf_paciente  String @id
   paciente    Paciente  @relation(fields: [cpf_paciente], references: [cpf])
   data        String
 
