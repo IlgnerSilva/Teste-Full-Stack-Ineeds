@@ -20,8 +20,9 @@ model Funcionario {
 }
 
 model Paciente {
-  id          String  @id @default(uuid())
+  id          String  @default(uuid())
   nome        String
+  cpf         String  @id
   telefone    String
 
   @@map("paciente")
@@ -30,8 +31,8 @@ model Paciente {
 
 model Consulta {
   id          String  @id @default(uuid())
-  pacienteId  String
-  paciente    Paciente  @relation(fields: [pacienteId], references: [id])
+  cpf_paciente  String
+  paciente    Paciente  @relation(fields: [cpf_paciente], references: [cpf])
   data        DateTime 
 
   @@map("consulta")
