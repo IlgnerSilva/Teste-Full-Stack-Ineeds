@@ -5,6 +5,7 @@ import { LoginFuncionarioUseCase } from "./LoginFuncionarioUseCase";
 class LoginFuncionarioController{
     async handle(req: Request, res: Response){
         const { matricula, hash_senha } = req.body;
+        console.log(req.body)
         try{
             const loginFuncionarioUseCase = new LoginFuncionarioUseCase();
             const tokenFuncionario = await loginFuncionarioUseCase.execute({
