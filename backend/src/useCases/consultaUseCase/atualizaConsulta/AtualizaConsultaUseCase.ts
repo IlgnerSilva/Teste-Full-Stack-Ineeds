@@ -1,8 +1,9 @@
 import { prismaClient } from "../../../database/prismaCliente";
 
 interface IConsulta {
-    cpf_paciente: string;
-    data: string
+    id: string; 
+    data: string;
+
 }
 
 function verificaData(dataRecebida: string){
@@ -17,17 +18,18 @@ function verificaData(dataRecebida: string){
 }
 
 class AtualizaConsultaUseCase{
-    async execute({cpf_paciente, data}: IConsulta){
+    async execute({id, data}: IConsulta){
         verificaData(data)
-        const pacineteJaExiste = await prismaClient.paciente.findUnique({
-            where: {cpf: cpf_paciente}
+        console.log(id)
+        const consultaJaExiste = await prismaClient.paciente.findMany({
+            where: {id: id}
         });
 
-        if(!pacineteJaExiste){
-            throw new Error('Não existe nenhum paciente com esse CPF.');
+        if(!consultaJaExiste){
+            throw new Error('Não existe nenhum consulta com esse ID.');
         }
         const consulta = await prismaClient.consulta.update({
-            where: {cpf_paciente: cpf_paciente},
+            where: {id: id},
             data: {data: data}
         });
         return consulta;

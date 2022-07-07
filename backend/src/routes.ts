@@ -5,6 +5,8 @@ import { CreatePacienteController } from "./useCases/pacienteUseCase/createPacie
 import { middlewareLogin } from "./middlewares/middlewareLogin";
 import { CreateConsultaController } from "./useCases/consultaUseCase/createConsulta/CreateConsultaController";
 import { AtualizaConsultaController } from "./useCases/consultaUseCase/atualizaConsulta/AtualizaConsultaController";
+import { DeleteConsultaConstroller } from "./useCases/consultaUseCase/deleteConsulta/DeleteConsultaController";
+import { BuscaConsultaConstroller } from "./useCases/consultaUseCase/buscaConsulta/BuscaConsultaController";
 
 const router = Router();
 
@@ -14,14 +16,17 @@ const createFuncionarioController = new CreateFuncionarioController();
 router.post('/auth/register/funcionario', createFuncionarioController.handle);
 router.post('/auth/login/funcionario', loginFuncionarioController.handle);
 
-
 const createPacienteController = new CreatePacienteController();
 router.post('/auh/register/paciente', middlewareLogin, createPacienteController.handle);
 
 const createConsultaConstroller = new CreateConsultaController();
 const atualizaConsultaController = new AtualizaConsultaController();
+const deleteConsultaConstroller = new DeleteConsultaConstroller();
+const buscaConsultaConstroller = new BuscaConsultaConstroller();
 router.post('/auth/register/consulta', middlewareLogin, createConsultaConstroller.handle);
 router.put('/auth/update/consulta', middlewareLogin, atualizaConsultaController.handle);
+router.delete('/delete/consulta/:id', middlewareLogin, deleteConsultaConstroller.handle);
+router.get('/consulta/:busca', middlewareLogin, buscaConsultaConstroller.handle);
 
 
 

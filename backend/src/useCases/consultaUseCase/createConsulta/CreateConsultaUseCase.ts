@@ -6,7 +6,7 @@ interface IConsulta{
 }
 
 function verificaData(dataRecebida: string){
-    const partesData: any = dataRecebida.split("/");
+    const partesData: any = dataRecebida.split("-");
     const dataAtual = new Date(partesData[2], partesData[1] - 1, partesData[0]);
 
     if(dataAtual < new Date()){

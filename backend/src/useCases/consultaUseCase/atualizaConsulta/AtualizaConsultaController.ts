@@ -4,11 +4,11 @@ import { Request, Response } from "express";
 class AtualizaConsultaController{
     async handle(req: Request, res: Response){
         try{
-            const { cpf_paciente, data } = req.body;
+            const { id, data } = req.body;
             const atualizaConsultaUseCase = new AtualizaConsultaUseCase();
 
             const consulta = await atualizaConsultaUseCase.execute({
-                cpf_paciente,
+                id,
                 data
             });
             return res.status(201).json(consulta);
