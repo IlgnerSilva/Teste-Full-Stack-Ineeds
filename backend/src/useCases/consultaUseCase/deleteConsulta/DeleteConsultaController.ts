@@ -9,7 +9,6 @@ class DeleteConsultaConstroller{
             const deleteConsultaUseCase = new DeleteConsultaUseCase();
             await deleteConsultaUseCase.execute(id);
             return res.status(201).json({message: 'Consulta cancelada.'});
-
         }catch(err){
             return res.status(400).json({
                 Error: true,

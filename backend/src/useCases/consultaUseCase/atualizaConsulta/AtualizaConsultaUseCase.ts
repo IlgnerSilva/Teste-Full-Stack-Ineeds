@@ -3,24 +3,20 @@ import { prismaClient } from "../../../database/prismaCliente";
 interface IConsulta {
     id: string; 
     data: string;
-
 }
 
 function verificaData(dataRecebida: string){
-    const partesData: any = dataRecebida.split("/");
+    const partesData: any = dataRecebida.split("-");
     const dataAtual = new Date(partesData[2], partesData[1] - 1, partesData[0]);
-
     if(dataAtual < new Date()){
         throw new Error('Data inválida');
     }
-
     return
 }
 
 class AtualizaConsultaUseCase{
     async execute({id, data}: IConsulta){
         verificaData(data)
-        console.log(id)
         const consultaJaExiste = await prismaClient.paciente.findMany({
             where: {id: id}
         });

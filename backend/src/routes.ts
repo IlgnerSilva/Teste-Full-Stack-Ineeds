@@ -10,7 +10,6 @@ import { BuscaConsultaConstroller } from "./useCases/consultaUseCase/buscaConsul
 
 const router = Router();
 
-
 const loginFuncionarioController = new LoginFuncionarioController();
 const createFuncionarioController = new CreateFuncionarioController();
 router.post('/auth/register/funcionario', createFuncionarioController.handle);
@@ -27,11 +26,5 @@ router.post('/auth/register/consulta', middlewareLogin, createConsultaConstrolle
 router.put('/auth/update/consulta', middlewareLogin, atualizaConsultaController.handle);
 router.delete('/delete/consulta/:id', middlewareLogin, deleteConsultaConstroller.handle);
 router.get('/consulta/:busca', middlewareLogin, buscaConsultaConstroller.handle);
-
-
-
-
-
-
 
 export { router }
