@@ -33,7 +33,7 @@ model Consulta {
   id          String  @id @default(uuid())
   cpf_paciente  String
   paciente    Paciente  @relation(fields: [cpf_paciente], references: [cpf])
-  data        DateTime 
+  data        String
 
   @@map("consulta")
 }

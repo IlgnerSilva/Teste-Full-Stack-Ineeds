@@ -12,16 +12,17 @@ CREATE TABLE "funcionario" (
 CREATE TABLE "paciente" (
     "id" TEXT NOT NULL,
     "nome" TEXT NOT NULL,
+    "cpf" TEXT NOT NULL,
     "telefone" TEXT NOT NULL,
 
-    CONSTRAINT "paciente_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "paciente_pkey" PRIMARY KEY ("cpf")
 );
 
 -- CreateTable
 CREATE TABLE "consulta" (
     "id" TEXT NOT NULL,
-    "pacienteId" TEXT NOT NULL,
-    "data" TIMESTAMP(3) NOT NULL,
+    "cpf_paciente" TEXT NOT NULL,
+    "data" TEXT NOT NULL,
 
     CONSTRAINT "consulta_pkey" PRIMARY KEY ("id")
 );
@@ -30,4 +31,4 @@ CREATE TABLE "consulta" (
 CREATE UNIQUE INDEX "funcionario_matricula_key" ON "funcionario"("matricula");
 
 -- AddForeignKey
-ALTER TABLE "consulta" ADD CONSTRAINT "consulta_pacienteId_fkey" FOREIGN KEY ("pacienteId") REFERENCES "paciente"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "consulta" ADD CONSTRAINT "consulta_cpf_paciente_fkey" FOREIGN KEY ("cpf_paciente") REFERENCES "paciente"("cpf") ON DELETE RESTRICT ON UPDATE CASCADE;
